@@ -1,0 +1,30 @@
+{
+  "name": "hangman",
+  "version": "1.0.0",
+  "description": "hangman game with javascript",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "webpack-dev-server --content-base src --inline --hot"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/wazaniq/Hangman.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/wazaniq/Hangman/issues"
+  },
+  "homepage": "https://github.com/wazaniq/Hangman#readme",
+  "dependencies": {
+    "babel-core": "^6.24.1",
+    "babel-loader": "^7.0.0",
+    "babel-preset-es2015": "^6.24.1",
+    "jquery": "^3.2.1",
+    "webpack": "^2.5.1"
+  },
+  "devDependencies": {
+    "webpack-dev-server": "^2.4.5"
+  }
+}

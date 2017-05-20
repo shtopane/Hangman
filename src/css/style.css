@@ -1,0 +1,49 @@
+body,
+html {
+  font-size: 16px;
+  margin: 0;
+  padding: 0;
+  background-color: #e0e0e0; }
+
+.container {
+  background-color: #aeea00;
+  width: 50%;
+  margin: 0 auto; }
+  .container h1 {
+    margin-left: 200px; }
+  .container h4 {
+    margin-left: 180px; }
+  .container #score {
+    margin-left: 6%; }
+  .container .alphabet-wrapper .letter-buttons li {
+    display: inline-block;
+    background-color: white;
+    text-transform: uppercase;
+    border: 1px solid #212121;
+    padding: 15px;
+    margin: 2px;
+    cursor: pointer; }
+    .container .alphabet-wrapper .letter-buttons li:hover {
+      background-color: #e0e0e0; }
+  .container .alphabet-wrapper .guess-word {
+    margin: 0 auto; }
+    .container .alphabet-wrapper .guess-word li {
+      display: inline-block;
+      text-transform: uppercase;
+      margin-right: 5px; }
+  .container .alphabet-wrapper #lives,
+  .container .alphabet-wrapper #desc,
+  .container .alphabet-wrapper #clue {
+    margin-left: 6%; }
+  .container .controller {
+    margin-left: 6%;
+    padding-bottom: 6%; }
+    .container .controller button {
+      padding: 5px 10px;
+      border: none;
+      background-color: #e0e0e0;
+      color: #212121; }
+      .container .controller button:hover {
+        background-color: white; }
+
+/*# sourceMappingURL=style.css.map */

@@ -1,0 +1,66 @@
+@import './_variables';
+body,
+html {
+    font-size: 16px;
+    margin: 0;
+    padding: 0;
+    background-color: $light-gray;
+}
+
+.container {
+    background-color: $lime;
+    width: 50%;
+    margin: 0 auto;
+    h1 {
+        margin-left: 200px;
+    }
+    h4 {
+        margin-left: 180px;
+    }
+    #score {
+        margin-left: 6%;
+    }
+    .alphabet-wrapper {
+        .letter-buttons {
+            li {
+                display: inline-block;
+                background-color: white;
+                text-transform: uppercase;
+                border: 1px solid $black;
+                padding: 15px;
+                margin: 2px;
+                cursor: pointer;
+                &:hover {
+                    background-color: $light-gray;
+                }
+            }
+        }
+        .guess-word {
+            margin: 0 auto;
+            li {
+                display: inline-block;
+                text-transform: uppercase;
+                margin-right: 5px;
+            }
+        }
+        #lives,
+        #desc,
+        #clue {
+            margin-left: 6%;
+            ;
+        }
+    }
+    .controller {
+        margin-left: 6%;
+        padding-bottom: 6%;
+        button{
+            padding:5px 10px;
+            border:none;
+            background-color:$light-gray;
+            color:$black;
+            &:hover{
+                background-color:white;
+            }
+        }
+    }
+}

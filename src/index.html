@@ -13,6 +13,7 @@
     <div class="container">
         <h1>Hangman Game</h1>
         <h4>Try to guess the word using the letters below.</h4>
+        <h4 id="category"></h4>
         <div id="score">
             <span id="won"></span>
             <span id="lost"></span>
@@ -22,9 +23,14 @@
 
             </div>
             <p id="category-name"></p>
-            <div class="guess-word"></div>
+            <div class="guess-word">
+                <ul class="guess">
+                    
+                </ul>
+            </div>
             <h4 id="lives"></h4>
             <h3 id="desc"></h3>
+            <h3 id="clue"></h3>
             <div id="stickman"></div>
         </div>
         <div class="controller">
@@ -34,9 +40,8 @@
             </div>
         </div>
     </div>
-    <script src="./js/hangman.js">
-        
-    </script>
+    <script src="https://code.jquery.com/jquery-3.2.1.min.js"></script>
+    <script src="app.js"></script>
 </body>
 
 </html>
