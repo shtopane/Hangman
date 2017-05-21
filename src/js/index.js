@@ -17,18 +17,18 @@ let $description = $('#desc');
 
 
 const hints = [
-    ["House animal", "Animal in africa", "African cat", "Fastest animal", "A man's best friend", "A mamal that climbs on trees"],
-    ["Science-Fiction horror film", "Historical drama", "Giant great white shark", "Horror movie"],
+    ["House animal", "Wild cat", "African cat", "Fastest animal", "Sea animal", "A mamal that climbs on trees"],
+    ["Science-Fiction horror film", "Historical drama"],
     ["Northern city in the UK", "Capital of the Lombardy region in Italy", "Spanish capital", "Netherlands capital", "Czech Republic capital", "Bulgarian capital", "Bulgarian second largest city", "Bulgarian city in the Northwestern region", "German Capital", "USA capital"]
 ]
 let categories = [
-    ["cat", "elephant", "lion", "cheetah", "dog", "monkey"],
-    ["alien", "gladiator", "jaws", "saw"],
+    ["hourse", "elephant", "tiger", "cheetah", "dolphin", "monkey"],
+    ["alien", "gladiator"],
     ["manchester", "milan", "madrid", "amsterdam", "prague", "sofia", "plovdiv", "vraca", "berlin", "washington"]
 ];
 const clues = [
-    ["Meow", "The biggest animal on earth", "King of the jungle", "It is a cat.", "Come on...", "And looks a lot like you"],
-    ["Creatures out of Earth", "Slave in acient Rome", "And hunters", "Wanna play a game?"],
+    ["You can ride it", "The biggest animal on earth", "A big wild cat.", "It is a cat.", "Very cute mammals", "And looks a lot like you"],
+    ["Creatures out of Earth", "Slave in acient Rome"],
     ["They have a team that is very united", "Home of AC and Inter", "Really?", "I heard they smoke a lot of weed", "Really nice beers", "And biggest city", "Old name is Philippopolis", "They drink a lot", "It has L in its name.", "Where Barack Obama used to be?"],
 ];
 
