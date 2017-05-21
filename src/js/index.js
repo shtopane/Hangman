@@ -87,7 +87,7 @@ $('.letter').on('click', (ev) => {
             counter += wordIndex.length;
         }
     } else {
-        //draw.drawStickMan(currentUser.lives);        
+        draw.drawStickMan(currentUser.lives);        
         currentUser.lives -= 1;
         storage.update(currentUser);
         $('#lives').html(`Lives ${currentUser.lives}`);
@@ -142,9 +142,10 @@ $('#login').on('click', function() {
 function lostGame() {
     currentUser.lostGames += 1;
     currentUser.score += 1;
-    //draw.clear();
     
     currentUser.lives = 5;
+    draw.clear();
+    
 
     storage.update(currentUser);
 
@@ -156,8 +157,9 @@ function lostGame() {
 function winGame() {
     currentUser.wonGames += 1;
     currentUser.score += 1;
-    //draw.clear();
     currentUser.lives = 5;
+    draw.clear();
+    
     storage.update(currentUser);
     updateScores();
     $description.html('You win!');
