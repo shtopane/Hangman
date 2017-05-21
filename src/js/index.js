@@ -56,7 +56,7 @@ function restart() {
 }
 restart();
 
-function lostGame() {
+function loseGame() {
     currentUser.lostGames += 1;
     currentUser.score += 1;
     currentUser.lives = 5;
@@ -104,11 +104,13 @@ $('.letter').on('click', (ev) => {
         storage.update(currentUser);
 
         $('#lives').html(`Lives ${currentUser.lives}`);
+        
         if (currentUser.lives === 0) {
-            lostGame();
+            loseGame();
             restart();
         }
     }
+
     if (counter === currentWord.length - 2 && currentUser.lives > 0) {
         winGame();
         restart();
