@@ -21,9 +21,6 @@ module.exports = {
         filename: 'app.js'
     },
     plugins: [
-        new ExtractTextPlugin({
-            filename: '[name].css'
-        }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: true }),
     ],

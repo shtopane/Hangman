@@ -11,7 +11,6 @@ let currentCategoryIndex;
 let currentUser;
 let counter = 0;
 let guesses = [];
-let guessedLetters = [];
 let $guess = $('.guess');
 let $description = $('#desc');
 
@@ -22,7 +21,7 @@ const hints = [
     ["Northern city in the UK", "Capital of the Lombardy region in Italy", "Spanish capital", "Netherlands capital", "Czech Republic capital", "Bulgarian capital", "Bulgarian second largest city", "Bulgarian city in the Northwestern region", "German Capital", "USA capital"]
 ]
 let categories = [
-    ["hourse", "elephant", "tiger", "cheetah", "dolphin", "monkey"],
+    ["horse", "elephant", "tiger", "cheetah", "dolphin", "monkey"],
     ["alien", "gladiator"],
     ["manchester", "milan", "madrid", "amsterdam", "prague", "sofia", "plovdiv", "vraca", "berlin", "washington"]
 ];
@@ -38,7 +37,6 @@ guessFactory.createAlphabet();
 function restart() {
     helper.cleanElements();
     guesses = [];
-    guessedLetters = [];
 
     currentCategory = helper.getRandom(categories);
     currentWord = helper.getRandom(currentCategory);
@@ -48,25 +46,46 @@ function restart() {
 
     $('#category').html(helper.showCategory(currentCategoryIndex));
 
-    console.log('current word', currentWord);
-
     let wordToGuess = guessFactory.createGuess(currentWord);
     $guess.append(wordToGuess);
 
-
     let desc = hints[currentCategoryIndex][currentWordIndex];
     $description.html(desc);
+
+    draw.clear();
 }
 restart();
 
+function lostGame() {
+    currentUser.lostGames += 1;
+    currentUser.score += 1;
+    currentUser.lives = 5;
+
+    storage.update(currentUser);
+    helper.updateScores(currentUser);
+
+    $description.html('GAME OVER');
+    counter = 0;
+}
+
+function winGame() {
+    currentUser.wonGames += 1;
+    currentUser.score += 1;
+    currentUser.lives = 5;
+
+    storage.update(currentUser);
+    helper.updateScores(currentUser);
+
+    $description.html('You win!');
+    counter = 0;
+}
 
 $('.letter').on('click', (ev) => {
     let $target = $(ev.target);
     $target.css('opacity', '0.6');
     let guess = $target.html();
 
-    guessedLetters.push(guess);
-    currentUser.guesses = guessedLetters.length;
+    currentUser.guesses += 1
 
     let wordToSearch = currentWord.slice(1, -1);
     let wordIndex = helper.allIndexOf(guess, wordToSearch);
@@ -85,7 +104,6 @@ $('.letter').on('click', (ev) => {
         storage.update(currentUser);
 
         $('#lives').html(`Lives ${currentUser.lives}`);
-
         if (currentUser.lives === 0) {
             lostGame();
             restart();
@@ -106,6 +124,7 @@ $('#hint').on('click', function() {
 $('#play-again').on('click', function() {
     restart();
 });
+
 $('#register').on('click', function() {
     let $userName = $('#username').val();
     let userName = user.register($userName);
@@ -116,6 +135,7 @@ $('#register').on('click', function() {
     }
 
 });
+
 $('#login').on('click', function() {
     let $userName = $('#username').val();
     currentUser = user.login($userName);
@@ -129,41 +149,6 @@ $('#login').on('click', function() {
         $('#user-form').addClass('hidden');
         $('.container').removeClass('hidden');
 
-        updateScores();
+        helper.updateScores(currentUser);
     }
 });
-
-function lostGame() {
-    currentUser.lostGames += 1;
-    currentUser.score += 1;
-    currentUser.lives = 5;
-
-    draw.clear();
-    storage.update(currentUser);
-    updateScores();
-
-    $description.html('GAME OVER');
-    counter = 0;
-}
-
-function winGame() {
-    currentUser.wonGames += 1;
-    currentUser.score += 1;
-    currentUser.lives = 5;
-
-    draw.clear();
-    storage.update(currentUser);
-    updateScores();
-
-    $description.html('You win!');
-    counter = 0;
-}
-
-function updateScores() {
-    $('#lives').html(`Lives: <strong>${currentUser.lives}</strong>`);
-    $('#game-count').html(`Games: <strong>${currentUser.score}</strong>`);
-    $('#guess-count').html(`Guesses: <strong>${currentUser.guesses}</strong>`);
-    $('#whole-words').html(`Whole word: <strong>${currentUser.wholeWordGuess}</strong>`);
-    $('#won').html(`Won: <strong>${currentUser.wonGames}</strong>`);
-    $('#lost').html(`Lost: <strong>${currentUser.lostGames}</strong>`);
-}
