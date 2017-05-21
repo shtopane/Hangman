@@ -36,10 +36,7 @@ export default{
             let $resultLi = $li.clone();
             $resultLi.attr('id', i);
 
-            let id = $resultLi.attr('id');
-            id = Number(id);
-
-            this.fillGuess(id, currentWord, $resultLi);
+            this.fillGuess(i, currentWord, $resultLi);
             result.push($resultLi);
         }
         return result;

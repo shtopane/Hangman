@@ -11,9 +11,9 @@ export default {
         return result;
     },
     showCategory: function(categoryIndex) {
-        if (categoryIndex == 0) {
+        if (categoryIndex === 0) {
             return "The Chosen Category is Animals";
-        } else if (categoryIndex == 1) {
+        } else if (categoryIndex === 1) {
             return "The Chosen Category Is Films";
         } else {
             return "The Chosen Category Is Cities";
