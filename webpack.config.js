@@ -10,8 +10,8 @@ module.exports = {
             exclude: [/node_modules/],
             use: [{
                 loader: 'babel-loader',
-                query:{
-                    presets:['es2015']
+                query: {
+                    presets: ['es2015']
                 }
             }],
         }]
@@ -21,6 +21,9 @@ module.exports = {
         filename: 'app.js'
     },
     plugins: [
+        new ExtractTextPlugin({
+            filename: '[name].css'
+        }),
         new webpack.optimize.OccurrenceOrderPlugin(),
         new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: true }),
     ],
