@@ -10,13 +10,24 @@
 </head>
 
 <body>
+    <form id="user-form">
+        <div class="form-group">
+            <input id="username" type="text" name="username" value="" placeholder="Username...">
+            <button type="button" id="register">Register</button>
+            <button type="button" id="login">Login</button>
+        </div>
+    </form>
     <div class="container">
+        <p id="loged-in"></p>        
         <h1>Hangman Game</h1>
         <h4>Try to guess the word using the letters below.</h4>
         <h4 id="category"></h4>
         <div id="score">
+            <span id="game-count"></span>
             <span id="won"></span>
             <span id="lost"></span>
+            <span id="whole-words"></span>
+            <span id="guess-count"></span>
         </div>
         <div class="alphabet-wrapper">
             <div class="letter-buttons">
@@ -25,12 +36,12 @@
             <p id="category-name"></p>
             <div class="guess-word">
                 <ul class="guess">
-                    
+
                 </ul>
             </div>
             <h4 id="lives"></h4>
-            <h3 id="desc"></h3>
-            <h3 id="clue"></h3>
+            <p id="desc"></p>
+            <p id="clue"></p>
             <div id="stickman"></div>
         </div>
         <div class="controller">

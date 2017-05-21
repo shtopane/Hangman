@@ -10,29 +10,6 @@ export default {
         }
         return result;
     },
-    createAlphabet: function() {
-        let alphabet = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h',
-            'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's',
-            't', 'u', 'v', 'w', 'x', 'y', 'z'
-        ];
-
-        let alphabetDiv = document.getElementsByClassName('letter-buttons')[0];
-        let alphabetUl = document.createElement('ul');
-        let li = document.createElement('li');
-        let listOfLetters;
-
-        for (let i = 0; i < alphabet.length; i += 1) {
-            alphabetUl['id'] = 'alphabet';
-
-            listOfLetters = li.cloneNode(true);
-
-            listOfLetters.classList += 'letter';
-            listOfLetters.innerHTML = alphabet[i];
-
-            alphabetUl.appendChild(listOfLetters);
-        }
-        alphabetDiv.appendChild(alphabetUl);
-    },
     showCategory: function(categoryIndex) {
         if (categoryIndex == 0) {
             return "The Chosen Category is Animals";
@@ -41,5 +18,11 @@ export default {
         } else {
             return "The Chosen Category Is Cities";
         }
+    },
+    cleanElements: function() {
+        $('.guess-letter').remove();
+        $('.letter').css('opacity', '1');
+        $('#clue').html('');
+        $('#desc').html('');
     }
 }

@@ -3,18 +3,56 @@ html {
   font-size: 16px;
   margin: 0;
   padding: 0;
+  color: #212121;
   background-color: #e0e0e0; }
+
+.hidden {
+  display: none; }
+
+#user-form {
+  margin: 0 auto;
+  margin-top: 200px;
+  height: 100px;
+  width: 20%;
+  border: 1px solid black; }
+  #user-form input {
+    display: block;
+    margin: auto;
+    margin-top: 20px; }
+  #user-form button {
+    background-color: #212121;
+    color: #e0e0e0;
+    padding: 5px; }
+  #user-form #register {
+    margin-right: 10px;
+    margin-left: 70px;
+    margin-top: 10px; }
+  #user-form #login {
+    padding: 5px 10px; }
 
 .container {
   background-color: #aeea00;
   width: 50%;
   margin: 0 auto; }
+  .container #loged-in {
+    margin-top: 20px;
+    display: inline-block;
+    margin-left: 20px;
+    text-decoration: underline; }
   .container h1 {
     margin-left: 200px; }
   .container h4 {
     margin-left: 180px; }
   .container #score {
-    margin-left: 6%; }
+    margin-left: 40px; }
+    .container #score span {
+      font-size: 18px;
+      font-weight: 400;
+      margin: 10px; }
+    .container #score #whole-word {
+      margin-right: 0px; }
+    .container #score #guess-count {
+      margin-left: 0; }
   .container .alphabet-wrapper .letter-buttons li {
     display: inline-block;
     background-color: white;
@@ -34,10 +72,10 @@ html {
   .container .alphabet-wrapper #lives,
   .container .alphabet-wrapper #desc,
   .container .alphabet-wrapper #clue {
-    margin-left: 6%; }
+    margin-left: 40px; }
   .container .controller {
-    margin-left: 6%;
-    padding-bottom: 6%; }
+    margin-left: 40px;
+    padding-bottom: 40px; }
     .container .controller button {
       padding: 5px 10px;
       border: none;

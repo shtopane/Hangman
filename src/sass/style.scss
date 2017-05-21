@@ -4,13 +4,50 @@ html {
     font-size: 16px;
     margin: 0;
     padding: 0;
+    color:$black;
     background-color: $light-gray;
+}
+
+.hidden {
+    display: none;
+}
+
+#user-form {
+    margin: 0 auto;
+    margin-top: 200px;
+    height: 100px;
+    width: 20%;
+    border: 1px solid black;
+    input {
+        display: block;
+        margin: auto;
+        margin-top: 20px;
+    }
+    button {
+        background-color: $black;
+        color: $light-gray;
+        padding: 5px;
+    }
+    #register {
+        margin-right: 10px;
+        margin-left: 70px;
+        margin-top: 10px;
+    }
+    #login {
+        padding: 5px 10px;
+    }
 }
 
 .container {
     background-color: $lime;
     width: 50%;
     margin: 0 auto;
+    #loged-in {
+        margin-top: 20px;
+        display: inline-block;
+        margin-left: 20px;
+        text-decoration: underline;
+    }
     h1 {
         margin-left: 200px;
     }
@@ -18,7 +55,18 @@ html {
         margin-left: 180px;
     }
     #score {
-        margin-left: 6%;
+        margin-left: 40px;
+        span {
+            font-size: 18px;
+            font-weight: 400;
+            margin: 10px;
+        }
+        #whole-word {
+            margin-right: 0px;
+        }
+        #guess-count {
+            margin-left: 0;
+        }
     }
     .alphabet-wrapper {
         .letter-buttons {
@@ -46,20 +94,20 @@ html {
         #lives,
         #desc,
         #clue {
-            margin-left: 6%;
+            margin-left: 40px;
             ;
         }
     }
     .controller {
-        margin-left: 6%;
-        padding-bottom: 6%;
-        button{
-            padding:5px 10px;
-            border:none;
-            background-color:$light-gray;
-            color:$black;
-            &:hover{
-                background-color:white;
+        margin-left: 40px;
+        padding-bottom: 40px;
+        button {
+            padding: 5px 10px;
+            border: none;
+            background-color: $light-gray;
+            color: $black;
+            &:hover {
+                background-color: white;
             }
         }
     }
