@@ -24,9 +24,10 @@ export default {
             alert('login empty user');
             return;
         }
+        
         let users = storage.load('users');
-        console.log('from login users', users);
         let currentUser;
+
         for(let i=0;i<users.length;i+=1){
             if (users[i].username === userName) {
                 currentUser = users[i];

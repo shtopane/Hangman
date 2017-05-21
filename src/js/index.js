@@ -2,6 +2,7 @@ import helper from "./helper";
 import guessFactory from "./guessFactory";
 import user from './user';
 import storage from './storage';
+import draw from './draw';
 
 let currentWord;
 let currentCategory;
@@ -67,6 +68,8 @@ $('.letter').on('click', (ev) => {
     $target.css('opacity', '0.6');
     let guess = $target.html();
     guessedLetters.push(guess);
+    currentUser.guesses = guessedLetters.length;
+    
 
     let wordToSearch = currentWord.slice(1, -1);
     let wordIndex = helper.allIndexOf(guess, currentWord);
@@ -74,24 +77,27 @@ $('.letter').on('click', (ev) => {
     if (wordIndex[0] > -1) {
         guessFactory.completeGuess(wordIndex, guess);
         guesses.push(guess);
-        currentUser.guesses = guesses.length;
         if (guesses.length === wordToSearch.length && currentUser.lives === 5) {
             currentUser.wholeWordGuess += 1;
-            console.log('user wholeWord', currentUser.wholeWordGuess);
-
         }
-        counter += 1;
+
+        if (wordIndex.length === 1) {
+            counter += 1;
+        } else {
+            counter += wordIndex.length;
+        }
     } else {
+        //draw.drawStickMan(currentUser.lives);        
         currentUser.lives -= 1;
         storage.update(currentUser);
         $('#lives').html(`Lives ${currentUser.lives}`);
 
-        if (currentUser.lives <= 0) {
+        if (currentUser.lives === 0) {
             lostGame();
             restart();
         }
     }
-    if (counter == currentWord.length - 2 && currentUser.lives>0) {
+    if (counter == currentWord.length - 2 && currentUser.lives > 0) {
         winGame();
         restart();
     }
@@ -136,8 +142,10 @@ $('#login').on('click', function() {
 function lostGame() {
     currentUser.lostGames += 1;
     currentUser.score += 1;
-    currentUser.lives=5;
+    //draw.clear();
     
+    currentUser.lives = 5;
+
     storage.update(currentUser);
 
     updateScores();
@@ -148,7 +156,8 @@ function lostGame() {
 function winGame() {
     currentUser.wonGames += 1;
     currentUser.score += 1;
-    currentUser.lives=5;
+    //draw.clear();
+    currentUser.lives = 5;
     storage.update(currentUser);
     updateScores();
     $description.html('You win!');

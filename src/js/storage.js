@@ -11,8 +11,8 @@ export default {
         localStorage.removeItem(key);
     },
     update: function(user) {
-        console.log('update user', user);
         let users = JSON.parse(localStorage.getItem('users')) || [];
+
         for (let i = 0; i < users.length; i += 1) {
             if (users[i].username === user.username) {
                 console.log(users[i]);
@@ -20,7 +20,7 @@ export default {
                 break;
             }
         }
-        localStorage.setItem('users', JSON.stringify(users));
 
+        localStorage.setItem('users', JSON.stringify(users));
     }
 }
