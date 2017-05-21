@@ -24,8 +24,8 @@ export default{
     },
     completeGuess: function(wordIndex, guess) {
         for (let j = 0; j < wordIndex.length; j += 1) {
-            let indexToLook = wordIndex[j];
-            let $li = $('#' + indexToLook);
+            let indexToLook = wordIndex[j] + 1;
+            let $li = $(`#${indexToLook}`);
             $li.html(guess);
         }
     },

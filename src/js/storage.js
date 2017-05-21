@@ -15,7 +15,6 @@ export default {
 
         for (let i = 0; i < users.length; i += 1) {
             if (users[i].username === user.username) {
-                console.log(users[i]);
                 users[i] = user;
                 break;
             }

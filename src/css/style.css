@@ -12,20 +12,29 @@ html {
 #user-form {
   margin: 0 auto;
   margin-top: 200px;
-  height: 100px;
-  width: 20%;
-  border: 1px solid black; }
+  height: 150px;
+  width: 25%;
+  border: 1px solid #212121;
+  background-color: #aeea00; }
+  #user-form:hover {
+    transition: box-shadow .25s;
+    box-shadow: 0 8px 17px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19); }
   #user-form input {
+    padding: 5px 25px;
     display: block;
     margin: auto;
-    margin-top: 20px; }
+    margin-top: 50px; }
   #user-form button {
     background-color: #212121;
     color: #e0e0e0;
-    padding: 5px; }
+    padding: 5px;
+    border: none; }
+    #user-form button:hover {
+      color: white;
+      background-color: black; }
   #user-form #register {
     margin-right: 10px;
-    margin-left: 70px;
+    margin-left: 110px;
     margin-top: 10px; }
   #user-form #login {
     padding: 5px 10px; }
@@ -42,7 +51,7 @@ html {
   .container h1 {
     margin-left: 200px; }
   .container h4 {
-    margin-left: 180px; }
+    margin-left: 40px; }
   .container #score {
     margin-left: 40px; }
     .container #score span {
@@ -62,9 +71,11 @@ html {
     margin: 2px;
     cursor: pointer; }
     .container .alphabet-wrapper .letter-buttons li:hover {
-      background-color: #e0e0e0; }
+      background-color: #212121;
+      color: white; }
   .container .alphabet-wrapper .guess-word {
-    margin: 0 auto; }
+    margin: 0 auto;
+    font-size: 25px; }
     .container .alphabet-wrapper .guess-word li {
       display: inline-block;
       text-transform: uppercase;
@@ -73,6 +84,24 @@ html {
   .container .alphabet-wrapper #desc,
   .container .alphabet-wrapper #clue {
     margin-left: 40px; }
+  .container .stickman {
+    float: right;
+    margin-right: 100px;
+    position: relative;
+    bottom: 130px; }
+    .container .stickman .head {
+      display: block; }
+    .container .stickman .rightArm {
+      position: relative;
+      right: 5px; }
+    .container .stickman .leftLeg {
+      position: relative;
+      top: 60px;
+      right: 80px; }
+    .container .stickman .rightLeg {
+      position: relative;
+      top: 60px;
+      right: 90px; }
   .container .controller {
     margin-left: 40px;
     padding-bottom: 40px; }

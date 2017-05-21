@@ -33,7 +33,6 @@ const clues = [
     ["Creatures out of Earth", "Slave in acient Rome", "And hunters", "Wanna play a game?"],
     ["They have a team that is very united", "Home of AC and Inter", "Really?", "I heard they smoke a lot of weed", "Really nice beers", "And biggest city", "Old name is Philippopolis", "They drink a lot", "It has L in its name.", "Where Barack Obama used to be?"],
 ];
-$('.container').addClass('hidden');
 guessFactory.createAlphabet();
 $won.html('Won: 0');
 $lost.html('Lost: 0');
@@ -67,29 +66,26 @@ $('.letter').on('click', (ev) => {
     let $target = $(ev.target);
     $target.css('opacity', '0.6');
     let guess = $target.html();
+
     guessedLetters.push(guess);
     currentUser.guesses = guessedLetters.length;
-    
 
     let wordToSearch = currentWord.slice(1, -1);
-    let wordIndex = helper.allIndexOf(guess, currentWord);
+    let wordIndex = helper.allIndexOf(guess, wordToSearch);
 
     if (wordIndex[0] > -1) {
         guessFactory.completeGuess(wordIndex, guess);
         guesses.push(guess);
+
         if (guesses.length === wordToSearch.length && currentUser.lives === 5) {
             currentUser.wholeWordGuess += 1;
         }
-
-        if (wordIndex.length === 1) {
-            counter += 1;
-        } else {
-            counter += wordIndex.length;
-        }
+        counter += wordIndex.length;
     } else {
-        draw.drawStickMan(currentUser.lives);        
+        draw.drawStickMan(currentUser.lives);
         currentUser.lives -= 1;
         storage.update(currentUser);
+
         $('#lives').html(`Lives ${currentUser.lives}`);
 
         if (currentUser.lives === 0) {
@@ -97,7 +93,7 @@ $('.letter').on('click', (ev) => {
             restart();
         }
     }
-    if (counter == currentWord.length - 2 && currentUser.lives > 0) {
+    if (counter === currentWord.length - 2 && currentUser.lives > 0) {
         winGame();
         restart();
     }
@@ -142,14 +138,12 @@ $('#login').on('click', function() {
 function lostGame() {
     currentUser.lostGames += 1;
     currentUser.score += 1;
-    
     currentUser.lives = 5;
+
     draw.clear();
-    
-
     storage.update(currentUser);
-
     updateScores();
+
     $description.html('GAME OVER');
     counter = 0;
 }
@@ -158,19 +152,20 @@ function winGame() {
     currentUser.wonGames += 1;
     currentUser.score += 1;
     currentUser.lives = 5;
+
     draw.clear();
-    
     storage.update(currentUser);
     updateScores();
+    
     $description.html('You win!');
     counter = 0;
 }
 
 function updateScores() {
-    $('#lives').html(`Lives: ${currentUser.lives}`);
-    $('#game-count').html(`Games: ${currentUser.score}`);
-    $('#guess-count').html(`Guesses: ${currentUser.guesses}`);
-    $('#whole-words').html(`Whole word: ${currentUser.wholeWordGuess}`);
-    $('#won').html(`Won: ${currentUser.wonGames}`);
-    $('#lost').html(`Lost: ${currentUser.lostGames}`);
+    $('#lives').html(`Lives: <strong>${currentUser.lives}</strong>`);
+    $('#game-count').html(`Games: <strong>${currentUser.score}</strong>`);
+    $('#guess-count').html(`Guesses: <strong>${currentUser.guesses}</strong>`);
+    $('#whole-words').html(`Whole word: <strong>${currentUser.wholeWordGuess}</strong>`);
+    $('#won').html(`Won: <strong>${currentUser.wonGames}</strong>`);
+    $('#lost').html(`Lost: <strong>${currentUser.lostGames}</strong>`);
 }
