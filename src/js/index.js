@@ -14,8 +14,6 @@ let guesses = [];
 let guessedLetters = [];
 let $guess = $('.guess');
 let $description = $('#desc');
-let $won = $('#won');
-let $lost = $('#lost');
 
 
 const hints = [
@@ -33,9 +31,9 @@ const clues = [
     ["Creatures out of Earth", "Slave in acient Rome", "And hunters", "Wanna play a game?"],
     ["They have a team that is very united", "Home of AC and Inter", "Really?", "I heard they smoke a lot of weed", "Really nice beers", "And biggest city", "Old name is Philippopolis", "They drink a lot", "It has L in its name.", "Where Barack Obama used to be?"],
 ];
+
 guessFactory.createAlphabet();
-$won.html('Won: 0');
-$lost.html('Lost: 0');
+
 
 function restart() {
     helper.cleanElements();
@@ -156,7 +154,7 @@ function winGame() {
     draw.clear();
     storage.update(currentUser);
     updateScores();
-    
+
     $description.html('You win!');
     counter = 0;
 }

@@ -33,8 +33,7 @@ html {
       color: white;
       background-color: black; }
   #user-form #register {
-    margin-right: 10px;
-    margin-left: 110px;
+    margin-left: 160px;
     margin-top: 10px; }
   #user-form #login {
     padding: 5px 10px; }
