@@ -1,23 +1,27 @@
 export default {
     register: function(userName) {
-        if(userName===''){
-            console.log('reg empty user');
+        let users = JSON.parse(localStorage.getItem('users') || "[]");
+
+        if (userName === '' || userName.length<2) {
+            alert('reg invalid user');
             return;
         }
-        console.log(userName)
-        localStorage.setItem('userName', JSON.stringify(userName));
+        let user = userName;
+        users.push(user);
+        localStorage.setItem('users', JSON.stringify(users));
+
     },
     login: function(userName) {
-        console.log(userName);
-        if(userName===''){
-            console.log('login empty user');
+        if (userName === '') {
+            alert('login empty user');
             return;
         }
-        let user = localStorage.getItem('userName');
-        user = JSON.parse(user);
-        if(user===userName){
+        let users = JSON.parse(localStorage.getItem('users'));
+        let indexOfUser=users.indexOf(userName);
+        let user=users[indexOfUser];
+        if (user === userName) {
             return user;
-        }else{
+        } else {
             return undefined;
         }
     }
