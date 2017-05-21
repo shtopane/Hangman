@@ -1,28 +1,38 @@
+import storage from './storage';
+
 export default {
     register: function(userName) {
-        let users = JSON.parse(localStorage.getItem('users') || "[]");
-
-        if (userName === '' || userName.length<2) {
+        if (userName === '' || userName.length < 2) {
             alert('reg invalid user');
-            return;
+            return undefined;
+        } else {
+            let user = {
+                username: userName,
+                lives:5,
+                score:0,
+                wonGames:0,
+                lostGames:0,
+                wholeWordGuess:0,
+                guesses:0
+            }
+            storage.save('users', user);
+            return user;
         }
-        let user = userName;
-        users.push(user);
-        localStorage.setItem('users', JSON.stringify(users));
-
     },
     login: function(userName) {
         if (userName === '') {
             alert('login empty user');
             return;
         }
-        let users = JSON.parse(localStorage.getItem('users'));
-        let indexOfUser=users.indexOf(userName);
-        let user=users[indexOfUser];
-        if (user === userName) {
-            return user;
-        } else {
-            return undefined;
+        let users = storage.load('users');
+        console.log('from login users', users);
+        let currentUser;
+        for(let i=0;i<users.length;i+=1){
+            if (users[i].username === userName) {
+                currentUser = users[i];
+                break;
+            }
         }
+        return currentUser;
     }
 }

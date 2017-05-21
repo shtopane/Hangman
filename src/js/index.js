@@ -1,16 +1,13 @@
 import helper from "./helper";
 import guessFactory from "./guessFactory";
 import user from './user';
+import storage from './storage';
 
-var lives = 5;
-let wonGames = 0;
-let lostGames = 0;
-let gamesCount = 0;
-let wholeWordGuess = 0;
 let currentWord;
 let currentCategory;
 let currentWordIndex;
 let currentCategoryIndex;
+let currentUser;
 let counter = 0;
 let guesses = [];
 let guessedLetters = [];
@@ -18,7 +15,6 @@ let $guess = $('.guess');
 let $description = $('#desc');
 let $won = $('#won');
 let $lost = $('#lost');
-let $displayLives = $('#lives');
 
 
 const hints = [
@@ -43,12 +39,8 @@ $lost.html('Lost: 0');
 
 function restart() {
     helper.cleanElements();
-    guesses=[];
-    lives = 5;
-    $displayLives.html(`Lives: ${lives}`);
-    $('#game-count').html('Games: ' + gamesCount);
-    $('#guess-count').html('Guesses: ' + guessedLetters.length);
-    $('#whole-words').html('Whole word: '+ wholeWordGuess);
+    guesses = [];
+    guessedLetters = [];
 
     currentCategory = helper.getRandom(categories);
     currentWord = helper.getRandom(currentCategory);
@@ -78,26 +70,28 @@ $('.letter').on('click', (ev) => {
 
     let wordToSearch = currentWord.slice(1, -1);
     let wordIndex = helper.allIndexOf(guess, currentWord);
-    console.log(wordIndex);
 
     if (wordIndex[0] > -1) {
         guessFactory.completeGuess(wordIndex, guess);
         guesses.push(guess);
-        console.log('guesses', guesses);
-        if (guesses.length === wordToSearch.length && lives === 5) {
-            wholeWordGuess += 1;
+        currentUser.guesses = guesses.length;
+        if (guesses.length === wordToSearch.length && currentUser.lives === 5) {
+            currentUser.wholeWordGuess += 1;
+            console.log('user wholeWord', currentUser.wholeWordGuess);
+
         }
         counter += 1;
     } else {
-        lives -= 1;
-        $displayLives.html(`Lives ${lives}`);
+        currentUser.lives -= 1;
+        storage.update(currentUser);
+        $('#lives').html(`Lives ${currentUser.lives}`);
 
-        if (lives <= 0) {
+        if (currentUser.lives <= 0) {
             lostGame();
             restart();
         }
     }
-    if (counter == currentWord.length - 2) {
+    if (counter == currentWord.length - 2 && currentUser.lives>0) {
         winGame();
         restart();
     }
@@ -114,44 +108,58 @@ $('#play-again').on('click', function() {
 });
 $('#register').on('click', function() {
     let $userName = $('#username').val();
-    user.register($userName);
-    $('#loged-in').html('User: ' +$userName);
-    
-    $('#user-form').addClass('hidden');
-    $('.container').removeClass('hidden');
+    let userName = user.register($userName);
+    if (!userName) {
+        alert('Try again');
+    } else {
+        alert('Now log in.');
+    }
+
 });
 $('#login').on('click', function() {
     let $userName = $('#username').val();
-    console.log($userName);
+    currentUser = user.login($userName);
 
-    let loginUserName = user.login($userName);
-    if (!loginUserName) {
+    if (!currentUser) {
         alert('Invalid username. Try again or register.');
         return;
     } else {
-        alert('Welcome, ' + loginUserName);
-        $('#loged-in').html('User: ' +loginUserName);
+        alert('Welcome, ' + currentUser.username);
+        $('#loged-in').html('User: ' + currentUser.username);
         $('#user-form').addClass('hidden');
         $('.container').removeClass('hidden');
+
+        updateScores();
     }
-
-
-
 });
 
 function lostGame() {
-    lives = 0;
-    lostGames += 1;
-    gamesCount += 1;
-    $lost.html(`Lost: ${lostGames}`);
+    currentUser.lostGames += 1;
+    currentUser.score += 1;
+    currentUser.lives=5;
+    
+    storage.update(currentUser);
+
+    updateScores();
     $description.html('GAME OVER');
     counter = 0;
 }
 
 function winGame() {
-    wonGames += 1;
-    gamesCount += 1;
-    $won.html(`Won: ${wonGames}`);
+    currentUser.wonGames += 1;
+    currentUser.score += 1;
+    currentUser.lives=5;
+    storage.update(currentUser);
+    updateScores();
     $description.html('You win!');
     counter = 0;
+}
+
+function updateScores() {
+    $('#lives').html(`Lives: ${currentUser.lives}`);
+    $('#game-count').html(`Games: ${currentUser.score}`);
+    $('#guess-count').html(`Guesses: ${currentUser.guesses}`);
+    $('#whole-words').html(`Whole word: ${currentUser.wholeWordGuess}`);
+    $('#won').html(`Won: ${currentUser.wonGames}`);
+    $('#lost').html(`Lost: ${currentUser.lostGames}`);
 }
